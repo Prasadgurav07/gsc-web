@@ -37,6 +37,13 @@
       }
   }
 </script>
+<style>
+  .carousel img {
+  border-radius: 10px;
+  height: 260px;
+  object-fit: cover;
+}
+</style>
 </head>
 
 <body class="service-details-page">
@@ -225,7 +232,6 @@
               <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
-
           <div class="col-lg-2 col-md-3 footer-links">
             <h4>Useful Links</h4>
             <ul>
@@ -292,8 +298,15 @@ const services = [
     points: [
       "HTML, CSS, JavaScript",
       "Fast loading",
-      "Low cost",
-      "Example: Company profile, portfolio"
+      "Low cost"
+    ],
+    bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹5,999",
+    images: [
+      "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -303,6 +316,14 @@ const services = [
       "PHP / ASP.NET / Node.js + Database",
       "Admin panel support",
       "Example: Blogs, business websites"
+    ],
+      bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹15,999",
+    images: [
+      "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -312,6 +333,14 @@ const services = [
       "SEO-friendly",
       "Lead generation focused",
       "Secure & scalable"
+    ],
+      bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹9,999",
+    images: [
+      "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -322,6 +351,15 @@ const services = [
       "Product management",
       "Order & inventory system",
       "Example: Online shopping websites"
+      
+    ],
+      bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹25,999",
+    images: [
+     "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -331,6 +369,14 @@ const services = [
       "CRM, ERP, dashboards",
       "High security & scalability",
       "Fully customized logic"
+    ],
+      bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹55,999",
+    images: [
+     "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -340,6 +386,14 @@ const services = [
       "Easy content updates",
       "User-friendly admin panel",
       "Example: WordPress, Joomla"
+    ],
+      bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹35,999",
+    images: [
+     "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -349,6 +403,14 @@ const services = [
       "Mobile, tablet & desktop friendly",
       "Better user experience",
       "Improves SEO ranking"
+    ],
+      bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹35,999",
+    images: [
+     "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -358,6 +420,14 @@ const services = [
       "Marketing & ads campaigns",
       "High conversion rate",
       "Clear call-to-action (CTA)"
+    ],
+      bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹20,999",
+    images: [
+      "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -367,6 +437,14 @@ const services = [
       "Login systems",
       "Role-based access",
       "Example: Employee portals, customer portals"
+    ],
+      bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "₹11,999",
+    images: [
+      "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   },
   {
@@ -376,6 +454,13 @@ const services = [
       "UI/UX improvement",
       "Speed optimization",
       "Security updates"
+    ],  bestfor: ["Small businesses", "Startups", "Portfolios"],
+    deliveryTime: "3–5 Days", 
+    price: "Depends on project",
+    images: [
+     "assets/img/gd.jpg",
+      "assets/img/home.jpg",
+      "assets/img/database.png"
     ]
   }
 ];
@@ -383,19 +468,85 @@ const services = [
 const serviceList = document.getElementById("serviceList");
 
 services.forEach((service, index) => {
+  const carouselId = `carousel_${index}`;
+
   serviceList.innerHTML += `
-    <h1 style="font-size:30px;font-weight:700;">
-      ${index + 1}. ${service.title}
-    </h1>
-    <br>
-    <h6 style="letter-spacing:0.3px; line-height:1.7;">
-      ${service.description}
-    </h6>
-    <ul style="letter-spacing:0.3px; line-height:1.7;">
-      ${service.points.map(p => `<li><h6>${p}</h6></li>`).join("")}
-    </ul>
+    <div class="card mb-4 p-4 shadow-sm">
+      <div class="row align-items-center">
+
+        <!-- LEFT CONTENT -->
+        <div class="col-md-7">
+          <h2 class="fw-bold mb-2">${index + 1}. ${service.title}</h2>
+
+          <p class="text-muted">${service.description}</p>
+
+          <!-- Badges -->
+          ${service.badges ? `
+          <div class="mb-3">
+            ${service.badges.map(b =>
+              `<span class="badge bg-primary me-1">${b}</span>`
+            ).join("")}
+          </div>` : ""}
+
+          <!-- Info -->
+          ${service.bestFor ? `<p><strong>Best For:</strong> ${service.bestFor}</p>` : ""}
+          ${service.deliveryTime ? `<p><strong>Delivery Time:</strong> ${service.deliveryTime}</p>` : ""}
+          ${service.price ? `<p><strong>Price:</strong> Starting from <strong>${service.price}</strong></p>` : ""}
+
+          <!-- Points -->
+          <ul class="service-points">
+            ${service.points.map(p => `<li>${p}</li>`).join("")}
+          </ul>
+
+          <!-- Buttons -->
+          <div class="text-end">
+            <a href="#" class="btn btn-primary">Get a Quote</a>
+            <a href="#" class="btn btn-outline-secondary ms-2">View Sample</a>
+          </div>
+        </div>
+        <br>
+        <!-- RIGHT SLIDESHOW -->
+        <div class="col-md-5 p-2">
+          ${service.images ? `
+          <div id="${carouselId}" 
+     class="carousel slide"
+     data-bs-ride="carousel"
+     data-bs-interval="3000"
+     data-bs-pause="false">
+            <div class="carousel-inner">
+              ${service.images.map((img, i) => `
+                <div class="carousel-item ${i === 0 ? "active" : ""}">
+                  <img src="${img}" class="d-block w-100 rounded" style="height:260px;object-fit:cover;">
+                </div>
+              `).join("")}
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>` : ""}
+        </div>
+
+      </div>
+    </div>
   `;
 });
+/* ---- PAUSE ON HOVER LOGIC ---- */
+document.querySelectorAll(".service-carousel").forEach(carouselEl => {
+  const carousel = new bootstrap.Carousel(carouselEl);
+
+  carouselEl.addEventListener("mouseenter", () => {
+    carousel.pause();
+  });
+
+  carouselEl.addEventListener("mouseleave", () => {
+    carousel.cycle();
+  });
+});
+  
 </script>
 
 </body>
